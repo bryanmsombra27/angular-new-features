@@ -1,0 +1,23 @@
+<app-title title="Defer Views / Blocs" />
+
+<section class="gris grid-cols-1">
+    @defer () {
+    <app-heavy-loaders-slow />
+
+    } @placeholder {
+    <p>cargando...</p>
+    }
+    @defer (on viewport) {
+    <app-heavy-loaders-slow />
+
+    } @placeholder {
+    <p>cargando...</p>
+    }
+    @defer (on idle) {
+    <app-heavy-loaders-slow />
+
+    } @placeholder {
+    <p>cargando...</p>
+    }
+
+</section>

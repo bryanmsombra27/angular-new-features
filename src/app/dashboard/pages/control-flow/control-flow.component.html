@@ -1,0 +1,146 @@
+<app-title title="Control Flow" />
+
+<section class="grid grid-cols-1 md:grid-cols-2 gap-3">
+    <div class="bg-white rounded shadow p-10">
+        <h1 class="text-3xl mb-5 p-1">Nueva forma de la estructura de control IF</h1>
+        <h2 class="text-2xl font-bold mb-5">If: {{showContent()}} </h2>
+
+        <button class="p-3 rounded bg-blue-600 text-white font-bold" (click)="toggleContent()">
+            click me!
+        </button>
+
+    </div>
+
+    <!-- NUEVA FORMA DE USAR UN IF  -->
+    @if(showContent()){
+
+    <h3>Solo aparece cuando es {{showContent()}}</h3>
+
+    }
+    <!-- SI SE REQUIERE USAR LA ESTRUCTURA DE CONTROL @ELSE ES OBLIGATORIO QUE SE DECLARE DESPUESDE UNA ESTRUCUTRA DE CONTROL DE IF -->
+    @else{
+    <h4>Solo aparece si es {{showContent()}} ******</h4>
+    }
+
+
+
+</section>
+
+<!-- @SWITCH CONTROL FLOW -->
+<section class="grid grid-cols-1 md:grid-cols-2 gap-3 mt-5">
+    <div class="bg-white rounded shadow p-10">
+        <h1 class="text-3xl mb-5 p-1"> estructura de control SWITCH </h1>
+
+        <button class="p-3 rounded bg-blue-600 text-white font-bold" (click)="changeGrade('A')">
+            A
+        </button>
+        <button class="p-3 rounded bg-green-600 text-white font-bold" (click)="changeGrade('B')">
+            B
+        </button>
+        <button class="p-3 rounded bg-yellow-600 text-white font-bold" (click)="changeGrade('C')">
+            C
+        </button>
+        <button class="p-3 rounded bg-orange-600 text-white font-bold" (click)="changeGrade('D')">
+            D
+        </button>
+        <button class="p-3 rounded bg-orange-700 text-white font-bold" (click)="changeGrade('E')">
+            E
+        </button>
+        <button class="p-3 rounded bg-red-600 text-white font-bold" (click)="changeGrade('F')">
+            F
+        </button>
+
+    </div>
+
+    <div>
+        @switch (grade()) {
+        @case ('A') {
+        <p>Obtuviste una {{grade()}}</p>
+        }
+        @case ('B') {
+        <p>Obtuviste una {{grade()}}</p>
+        }
+        @case ('C') {
+        <p>Obtuviste una {{grade()}}</p>
+        }
+        @case ('D') {
+        <p>Obtuviste una {{grade()}}</p>
+        }
+        @case ('E') {
+        <p>Obtuviste una {{grade()}}</p>
+        }
+        @case ('F') {
+        <p>Obtuviste una {{grade()}}</p>
+        }
+        @default {
+        <p>Obtuviste una {{grade()}}</p>
+        }
+
+        }
+
+
+
+
+
+
+
+
+
+
+    </div>
+
+
+
+
+
+
+
+</section>
+
+
+<section class="grid grid-cols-1 md:grid-cols-2 gap-3 mt-5">
+    <div class="bg-white rounded shadow p-10">
+        <h1 class="text-3xl mb-5 p-1">Nueva forma de la estructura de control FOR</h1>
+        <ol>
+            <!-- TODOS LOS ELEMENTOS QUE PUEDEN SER CONTROLADOS DESDE LA ESTRUCUTRA DE CONTROL DEEL FOR  -->
+            @for (framework of frameworks();
+            track $index;
+            let i = $index;
+            let first = $first;
+            let last = $last;
+            let even =$even;
+            let odd = $odd;
+            let count = $count ) {
+            <li [class]="{
+                'bg-red-100': even && !first && !last,
+                'bg-green-100': odd && !first && !last,
+                'bg-blue-100': first  || last,
+            }">
+                {{$index + 1}} / {{count}} {{ framework}}
+            </li>
+
+            }
+
+        </ol>
+        <!-- @EMPTY es usado para verificar si el arreglo contiene un valor si no tiene valor muestra el contenido del empty -->
+        <ol>
+            @for (framework of frameworks2(); track $index) {
+            <li>
+                {{framework}}
+            </li>
+
+            } @empty {
+            <p>No hay elementos en el arreglo</p>
+            }
+
+        </ol>
+
+
+
+
+
+    </div>
+
+
+
+</section>
