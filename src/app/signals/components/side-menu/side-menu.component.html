@@ -1,0 +1,11 @@
+<ul class="list-group">
+
+    <!-- CUANDO SE USA SIGNALS  SE DEBE DE LLAMAR EL VALOR COMO SIFUERA UNA FUNCION PARA OBTENER SU CONTENIDO -->
+    <li class="list-group-item" *ngFor="let item of menuItems()" routerLink="/{{item.route}}">
+
+
+        {{item.title}}
+
+    </li>
+
+</ul>
