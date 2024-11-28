@@ -1,1 +1,28 @@
-<p>user works!</p>
+<!-- solucion mia  -->
+<!-- @defer(when user()){
+<app-title title="Información del usuario:  {{fullName()}}" />
+
+} @placeholder {
+<app-title title="Información del usuario" />
+
+} -->
+
+<!-- solucion de fernando -->
+<app-title title="{{fullName()}}" />
+
+@if(user()){
+<section>
+    <img alt="avatar" srcset="{{user()!.avatar}}">
+
+    <div>
+        <h3>{{user()!.first_name}} {{user()?.last_name}} </h3>
+        <p>{{user()?.email}}</p>
+    </div>
+
+</section>
+
+
+
+} @else{
+<p>Cargando información del usuario</p>
+}
