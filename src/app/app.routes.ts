@@ -68,6 +68,18 @@ export const routes: Routes = [
             './dashboard/pages/view-transition-2/view-transition-2.component'
           ),
       },
+      {
+        path: 'inputs-outputs',
+        title: 'inputs outputs',
+        loadComponent: () =>
+          import('./dashboard/pages/inputs-outputs/inputs-outputs.component'),
+      },
+      {
+        path: 'angular-material',
+        title: 'Angular material v3',
+        loadComponent: () =>
+          import('./dashboard/pages/material/material.component'),
+      },
     ],
   },
   {
