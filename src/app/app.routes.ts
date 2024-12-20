@@ -1,9 +1,20 @@
 import { Routes } from '@angular/router';
-import { HomeComponent } from './components/home/home.component';
 
 export const routes: Routes = [
   {
-    path: '',
-    component: HomeComponent,
+    path: 'about',
+    loadComponent: () => import('./pages/about/about-page.component'),
+  },
+  {
+    path: 'contact',
+    loadComponent: () => import('./pages/contact/contact.component'),
+  },
+  {
+    path: 'pricing',
+    loadComponent: () => import('./pages/pricing/pricing-page.component'),
+  },
+  {
+    path: '**',
+    redirectTo: 'about',
   },
 ];
