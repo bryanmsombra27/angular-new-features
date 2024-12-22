@@ -1,4 +1,12 @@
-[[redirects]] 
-from = "/*"
-status = 200
-to = "/index.html"
+[build]
+  command = "ng build --configuration production"
+  publish = "dist/<nombre-de-tu-proyecto>"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+[functions]
+  directory = "netlify/functions"
+  external_node_modules = ["@netlify/angular-runtime"]
