@@ -1,6 +1,6 @@
 [build]
   command = "ng build --configuration production"
-  publish = "dist/<nombre-de-tu-proyecto>"
+  publish = "dist/angular-new-features"
 
 [[redirects]]
   from = "/*"
