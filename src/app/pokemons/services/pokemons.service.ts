@@ -14,7 +14,7 @@ export class PokemonsService {
   private http = inject(HttpClient);
 
   loadPage(page: number): Observable<SimplePokemon[]> {
-    if (page === 0) {
+    if (page !== 0) {
       --page;
     }
     page = Math.max(0, page);

@@ -4,9 +4,10 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve -o",
-    "build": "ng build",
+    "build": "npm run prerender:routes &&  ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
+    "prerender:routes": "node scripts/prerender-routes.js",
     "serve:ssr:angular-new-features": "node dist/angular-new-features/server/server.mjs"
   },
   "private": true,

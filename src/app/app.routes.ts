@@ -13,8 +13,12 @@ export const routes: Routes = [
     path: 'pricing',
     loadComponent: () => import('./pages/pricing/pricing-page.component'),
   },
+  // {
+  //   path: 'pokemons',
+  //   loadComponent: () => import('./pages/pokemons/pokemons.component'),
+  // },
   {
-    path: 'pokemons',
+    path: 'pokemons/page/:page',
     loadComponent: () => import('./pages/pokemons/pokemons.component'),
   },
   {

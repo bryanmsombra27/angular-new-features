@@ -1,8 +1,13 @@
-import { Component, inject, OnInit, signal } from '@angular/core';
+import { Component, effect, inject, OnInit, signal } from '@angular/core';
 import { PokemonListComponent } from '../../pokemons/components/pokemon-list/pokemon-list.component';
 import { PokemonsService } from '../../pokemons/services/pokemons.service';
 import { SimplePokemon } from '../../pokemons/interfaces/Pokemon.interface';
-import { ActivatedRoute, Router } from '@angular/router';
+import {
+  ActivatedRoute,
+  Router,
+  RouterLink,
+  RouterModule,
+} from '@angular/router';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { map, tap } from 'rxjs';
 import { Title } from '@angular/platform-browser';
@@ -10,7 +15,7 @@ import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-pokemons',
-  imports: [PokemonListComponent],
+  imports: [PokemonListComponent, RouterLink],
   templateUrl: './pokemons.component.html',
   styles: ``,
 })
@@ -26,15 +31,19 @@ export default class PokemonsComponent implements OnInit {
   // señales
   pokemons = signal<SimplePokemon[]>([]);
   currentPage = toSignal<number>(
-    this.route.queryParamMap.pipe(
-      map((params) => params.get('page') ?? '1'),
+    this.route.params.pipe(
+      map((params) => params['page'] ?? '1'),
       map((page) => (isNaN(+page) ? 1 : +page)),
       map((page) => Math.max(1, page))
     )
   );
 
+  loadOnPageChange = effect(() => {
+    this.loadPokemons(this.currentPage());
+  });
+
   ngOnInit(): void {
-    this.loadPokemons();
+    // this.loadPokemons();
     this.title.setTitle('Pokemons list');
 
     // setTimeout(() => {
@@ -43,22 +52,21 @@ export default class PokemonsComponent implements OnInit {
   }
 
   loadPokemons(page = 0) {
-    const pageToLoad = this.currentPage()! + page;
+    // const pageToLoad = this.currentPage()! + page;
 
     this.pokemonService
-      .loadPage(pageToLoad)
+      .loadPage(page)
+      // .loadPage(pageToLoad)
       .pipe(
         // disparar efectos secundarios para actualizar los query params
-        tap(() =>
-          this.router.navigate([], {
-            queryParams: {
-              page: pageToLoad,
-            },
-          })
-        ),
-        tap(() =>
-          this.title.setTitle(`Pokemons list page ${this.currentPage()}`)
-        )
+        // tap(() =>
+        //   this.router.navigate([], {
+        //     queryParams: {
+        //       page: pageToLoad,
+        //     },
+        //   })
+        // ),
+        tap(() => this.title.setTitle(`Pokemons list page ${page}`))
       )
 
       .subscribe((pokemons) => {
