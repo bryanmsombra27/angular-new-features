@@ -26,7 +26,7 @@ export class IssueService {
         selectedLabels: [...this.selectedLabels()],
       },
     ],
-    queryFn: () => getIssues(this.selectedState()),
+    queryFn: () => getIssues(this.selectedState(), [...this.selectedLabels()]),
     refetchOnWindowFocus: false,
   }));
 
